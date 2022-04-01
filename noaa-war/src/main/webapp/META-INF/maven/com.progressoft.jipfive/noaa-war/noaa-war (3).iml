@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: javax:javaee-api:7.0" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.5.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: taglibs:standard:1.1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.2" level="project" />
+    <orderEntry type="module" module-name="file-parser" />
+    <orderEntry type="module" module-name="parser-spi" />
+    <orderEntry type="module" module-name="beans" />
+    <orderEntry type="module" module-name="file-datastore-imp" />
+    <orderEntry type="module" module-name="file-datastore-spi" />
+    <orderEntry type="module" module-name="file-dao-imp" />
+    <orderEntry type="module" module-name="dao-spi" />
+    <orderEntry type="module" module-name="requests-module" />
+    <orderEntry type="module" module-name="database-dao-imp" />
+    <orderEntry type="module" module-name="database-datastore-spi" />
+    <orderEntry type="module" module-name="factory-spi" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.44" level="project" />
+    <orderEntry type="module" module-name="hhutdownrecoverythread" />
+    <orderEntry type="module" module-name="user-managment (3) (com.progressoft.jipfive)" />
+    <orderEntry type="module" module-name="usecases-imp" />
+    <orderEntry type="module" module-name="param-reader-consol" />
+    <orderEntry type="module" module-name="usecases-spi" />
+    <orderEntry type="module" module-name="import-reobort" />
+    <orderEntry type="module" module-name="gsod-importer" />
+    <orderEntry type="module" module-name="param-reader-web" />
+    <orderEntry type="module" module-name="param-readers-spi" />
+    <orderEntry type="module" module-name="gsod-command" />
+    <orderEntry type="module" module-name="stations-commadn (3) (com.progressoft.jipfive)" />
+    <orderEntry type="module" module-name="import-command" />
+    <orderEntry type="module" module-name="command-factory" />
+    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
+    <orderEntry type="module" module-name="database-parser" />
+    <orderEntry type="module" module-name="database-datastore-imp" />
+    <orderEntry type="module" module-name="factory-imp" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.0.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.0.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.0.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-core:5.0.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.0.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.0.2.RELEASE" level="project" />
+    <orderEntry type="module" module-name="json-data-handler" />
+  </component>
+</module>

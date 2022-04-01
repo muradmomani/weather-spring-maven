@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:cx="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd 
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<cx:annotation-config />
+
+	<bean id="connectionFactory" class="com.progressoft.jipfive.DBConnectionFactory">
+		<constructor-arg value="jdbc:mysql://localhost:3306/weather?useSSL=false" />
+		<constructor-arg value="root" />
+		<constructor-arg value="root" />
+	</bean>
+
+
+
+	<bean id="stationParser" class="com.progressoft.jipfive.DataBaseStationParser" />
+
+	<bean id="stationDatastore" class="com.progressoft.jipfive.DBDataStore">
+		<constructor-arg ref="stationParser" />
+		<constructor-arg ref="connectionFactory" />
+	</bean>
+
+	<bean id="stationDao" class="com.progressoft.jipfive.StationsDataBaseDAO">
+		<constructor-arg ref="stationDatastore" />
+	</bean>
+
+	<bean id="stationUsecase"
+		class="com.progressoft.jipfive.usecases.imp.DefaultStationUseCases">
+		<constructor-arg ref="stationDao" />
+	</bean>
+
+	<bean id="gsodDBParser" class="com.progressoft.jipfive.DataBaseGsodParser" />
+
+	<bean id="gsodStringParser" class="com.progressoft.jipfive.StringToGsodParser" />
+
+	<bean id="gsodDBQueryExecutor" class="com.progressoft.jipfive.DBDataStore">
+		<constructor-arg ref="gsodDBParser" />
+		<constructor-arg ref="connectionFactory" />
+	</bean>
+
+	<bean id="gsodDatastore" class="com.progressoft.jipfive.FileDataStore">
+		<constructor-arg value="/home/u687/noaa/gsod" />
+		<constructor-arg ref="gsodStringParser" />
+	</bean>
+
+	<bean id="fileGsodDao" class="com.progressoft.jip.FileGsodDAO">
+		<constructor-arg ref="gsodDatastore" />
+	</bean>
+	<bean id="databaseGsodDao" class="com.progressoft.jipfive.GSODDataBaseDAO">
+		<constructor-arg ref="gsodDBQueryExecutor" />
+		<constructor-arg ref="connectionFactory" />
+	</bean>
+	<bean id="decoratedGsodDao" class="com.progressoft.jipfive.GsodDecoratorDAO">
+		<constructor-arg ref="fileGsodDao" />
+		<constructor-arg ref="databaseGsodDao" />
+	</bean>
+
+	<bean id="gsodUsecase" class="com.progressoft.jipfive.usecases.imp.DefaultGsodUseCase">
+		<constructor-arg ref="decoratedGsodDao" />
+		<constructor-arg ref="stationDao" />
+	</bean>
+
+
+	<bean id="importUseCase"
+		class="com.progressoft.jipfive.usecases.imp.DefaultImportUseCase">
+		<constructor-arg ref="gsodStringParser" />
+		<constructor-arg ref="fileGsodDao" />
+		<constructor-arg ref="connectionFactory" />
+	</bean>
+
+	<bean id="gsodWithPageining"
+		class="com.progressoft.jipfive.usecases.imp.GsodUseCaseWithPage">
+		<constructor-arg ref="gsodUsecase" />
+	</bean>
+
+	<bean id="summery"
+		class="com.progressoft.jipfive.gsodcommands.model.GetGsodSummery">
+		<constructor-arg ref="gsodWithPageining" />
+	</bean>
+
+	<bean id="stationsCommandFactoryBuilder" class="proxycontextinit.StationsCommandFactory">
+	<constructor-arg ref="stationUsecase" />
+	<constructor-arg ref="gsodUsecase"/>
+	</bean>
+
+	<bean id="stationsCommandFactory" factory-bean="stationsCommandFactoryBuilder"
+		factory-method="build" />
+
+</beans>
