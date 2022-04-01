@@ -1,12 +1,12 @@
-##weather-spring-maven
+## weather-spring-maven
 This project was created as part of Java Induction Program.
 
-###Technologies used:
+### Technologies used:
 - JAVA EE
 - Lambda
 - JPA
 - Spring
 - Design Patterns 
 
-###Not Maintained
+### Not Maintained
 
